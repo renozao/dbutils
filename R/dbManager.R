@@ -4,6 +4,7 @@
 # Created: Jan 8, 2014
 ###############################################################################
 
+isString <- function(x) is.character(x) && length(x) == 1L
 
 #' Database Connection Manager
 #' 
@@ -34,18 +35,19 @@
 dbManager <- local({
             
         # cached connection
-        .db <- NULL
+        .db <- list()
         function(dbname, max = 20, timeout = 10, cache = TRUE, verbose = FALSE, where = topenv(parent.frame())){
             
+                dbkey <- dbname
                 # early exit if not a string
                 if( !isString(dbname) ) return(dbname)
                 # check previous connection
-                if( cache && !is.null(.db) ){
+                if( cache && !is.null(con <- .db[[dbkey]]) ){
                     # return cached connection object if still valid
-                    if( dbIsValid(.db) ) return(.db)
+                    if( dbIsValid(con) ) return(con)
                 }
                 # reset old connection object (do not close the connection)
-                .db <<- NULL
+                .db[[dbkey]] <<- NULL
                 
                 # detect driver
                 if( grepl("^([^:]+):", dbname) ){
@@ -83,7 +85,7 @@ dbManager <- local({
                 if( verbose ) message('OK [', .try, ']')
                 
                 # cache and return connection object 
-                .db <<- con
+                .db[[dbkey]] <<- con
                 con
         }
 })
