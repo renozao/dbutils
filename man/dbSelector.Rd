@@ -1,0 +1,14 @@
+\name{dbSelector}
+\alias{dbSelector}
+\title{Database Selection Generator}
+\usage{
+  dbSelector(con)
+}
+\arguments{
+  \item{con}{SQL database connection object}
+}
+\description{
+  Generates functions that extract SQL database record
+  fields based on the value of a given key.
+}
+
