@@ -19,7 +19,7 @@
 #' \item{Caching}{the last opened connection is cached and returned, if still valid}
 #' }
 #' 
-#' @param ... database connection specification(s)
+#' @param dbname database connection specification(s)
 #' @param max maximum number of connection attempts (integer)
 #' @param timeout time (in seconds) after which an error is thrown if the connection could not be 
 #' opened.
@@ -28,13 +28,14 @@
 #' @param verbose verbosity level
 #' @param where namespace of the calling package (not to be used)
 #' 
+#' @export
 #' @import DBI
 #' @importFrom utils packageName
 dbManager <- local({
             
         # cached connection
         .db <- NULL
-        function(..., max = 20, timeout = 10, cache = TRUE, verbose = FALSE, where = topenv(parent.frame())){
+        function(dbname, max = 20, timeout = 10, cache = TRUE, verbose = FALSE, where = topenv(parent.frame())){
             
                 # early exit if not a string
                 if( !isString(dbname) ) return(dbname)

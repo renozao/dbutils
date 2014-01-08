@@ -2,11 +2,11 @@
 \alias{dbManager}
 \title{Database Connection Manager}
 \usage{
-  dbManager(..., max = 20, timeout = 10, cache = TRUE,
+  dbManager(dbname, max = 20, timeout = 10, cache = TRUE,
     verbose = FALSE, where = topenv(parent.frame()))
 }
 \arguments{
-  \item{...}{database connection specification(s)}
+  \item{dbname}{database connection specification(s)}
 
   \item{max}{maximum number of connection attempts
   (integer)}

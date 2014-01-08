@@ -102,6 +102,7 @@ dbINSERTx <- function(con, x, .table, .verbose = FALSE, .dump = FALSE){
     }
 }
 
+#' @export
 SQLquery <- function(table_name){
     
     .fields <- list()
