@@ -1,0 +1,38 @@
+\name{dbINSERT}
+\alias{dbINSERT}
+\title{Insert Single Record into an SQL Table}
+\usage{
+  dbINSERT(con, ..., .table, .verbose = FALSE)
+}
+\arguments{
+  \item{con}{SQL database connection object}
+
+  \item{...}{named arguments used as pairs (field, value)}
+
+  \item{.table}{name of the table into which the recored is
+  inserted}
+
+  \item{.verbose}{verbose level}
+}
+\value{
+  the primary key of the newly inserted record
+}
+\description{
+  Insert Single Record into an SQL Table
+}
+\examples{
+# connect to sample database
+con <- .dbSampleConnection()
+dbGetQuery(con, 'SELECT * FROM test')
+
+# insert single record
+id <- dbINSERT(con, a = 1, b = 'blabla', c = NA, t = sql_NOW, .table = 'test')
+id
+
+# query table again
+dbGetQuery(con, 'SELECT * FROM test')
+
+# clean up
+dbEMPTY(con, 'test')
+}
+
