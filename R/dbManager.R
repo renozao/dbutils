@@ -44,7 +44,7 @@ dbManager <- local({
                 # check previous connection
                 if( cache && !is.null(con <- .db[[dbkey]]) ){
                     # return cached connection object if still valid
-                    if( dbIsValid(con) ) return(con)
+                    if( dbIsLive(con) ) return(con)
                 }
                 # reset old connection object (do not close the connection)
                 .db[[dbkey]] <<- NULL

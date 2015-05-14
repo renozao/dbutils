@@ -7,13 +7,13 @@
 
 #' Check Connection Validity
 #' 
-#' \code{dbIsValid} tests if a connection is valid, i.e. open.
+#' \code{dbIsLive} tests if a connection is valid, i.e. open.
 #' 
 #' @param con connection object, as returned by \code{\link{dbConnect}}.
 #' @export
 #' 
 #' 
-dbIsValid <- function(con){
+dbIsLive <- function(con){
     !is( try( dbGetInfo(con), silent = TRUE), 'try-error' )
 }
 
