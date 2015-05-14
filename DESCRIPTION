@@ -1,7 +1,7 @@
 Package: dbutils
 Type: Package
 Title: Database Utility Functions
-Version: 1.1.1
+Version: 1.1.2
 Date: 2014-01-08
 Authors@R: person('Renaud', 'Gaujoux', email = 'renaud@tx.technion.ac.il', role
     = c('aut', 'cre'))
